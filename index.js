@@ -535,6 +535,7 @@ init_react();
 var kuduairo_default = "/build/_assets/kuduairo-RIPEW75J.gif";
 
 // app/components/blurb.tsx
+var import_react_fast_marquee = __toModule(require("react-fast-marquee"));
 function Blurb() {
   return /* @__PURE__ */ React.createElement("section", {
     className: "row mt-4 blurb-container"
@@ -544,10 +545,9 @@ function Blurb() {
     className: `row justify-content-center align-items-center mb-4`
   }, /* @__PURE__ */ React.createElement("div", {
     className: "col-lg-8 blurb-description"
-  }, /* @__PURE__ */ React.createElement("marquee", {
-    behavior: "scroll",
-    direction: "left",
-    scrollamount: "20"
+  }, /* @__PURE__ */ React.createElement(import_react_fast_marquee.default, {
+    gradient: false,
+    speed: 200
   }, /* @__PURE__ */ React.createElement("h1", {
     className: "mb-4"
   }, "AAAAAAAIII MINHA VOAIDA")), /* @__PURE__ */ React.createElement("p", {
@@ -586,7 +586,8 @@ function AudioPlayer() {
   return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement(import_react_howler.default, {
     src: nofear_default,
     playing: play,
-    loop: true
+    loop: true,
+    html5: true
   }), /* @__PURE__ */ import_react2.default.createElement("button", {
     className: "play-btn",
     onClick: () => setPlay(!play)
