@@ -496,7 +496,8 @@ function Contributors() {
     }).then((data) => {
       data = data.map((contributor) => {
         return /* @__PURE__ */ React.createElement("div", {
-          className: "col-lg-2 col-5"
+          className: "col-lg-2 col-5",
+          key: contributor.login
         }, /* @__PURE__ */ React.createElement("div", {
           className: "card"
         }, /* @__PURE__ */ React.createElement("img", {
@@ -571,6 +572,27 @@ function Footer() {
   }, "Kuduairo Translator \xE9 um projeto de C\xF3sdigo Abeirto"));
 }
 
+// app/components/audio-player.tsx
+init_react();
+var import_react2 = __toModule(require("react"));
+var import_react_howler = __toModule(require("react-howler"));
+
+// app/audio/nofear.mp3
+var nofear_default = "/build/_assets/nofear-WA76NAAA.mp3";
+
+// app/components/audio-player.tsx
+function AudioPlayer() {
+  const [play, setPlay] = (0, import_react2.useState)(false);
+  return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement(import_react_howler.default, {
+    src: nofear_default,
+    playing: play,
+    loop: true
+  }), /* @__PURE__ */ import_react2.default.createElement("button", {
+    className: "play-btn",
+    onClick: () => setPlay(!play)
+  }, !play ? "\u25B6" : "\u23F8"));
+}
+
 // route-module:/home/runner/work/kuduairo-translator/kuduairo-translator/app/routes/index.tsx
 function Index() {
   const onTranslateClick = () => {
@@ -587,7 +609,7 @@ function Index() {
     src: handshake_default,
     alt: "Aperto de m\xE3os entre Braseil e Angoaila",
     className: "img-fluid handshake mb-3"
-  })), /* @__PURE__ */ React.createElement("section", {
+  }), /* @__PURE__ */ React.createElement(AudioPlayer, null)), /* @__PURE__ */ React.createElement("section", {
     className: "col-lg-5"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "form-group"
