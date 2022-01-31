@@ -2,8 +2,22 @@ var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __esm = (fn, res) => function __init() {
   return fn && (res = (0, fn[Object.keys(fn)[0]])(fn = 0)), res;
@@ -439,9 +453,12 @@ function App() {
 // route-module:/home/runner/work/kuduairo-translator/kuduairo-translator/app/routes/index.tsx
 var routes_exports = {};
 __export(routes_exports, {
-  default: () => Index
+  default: () => Index,
+  loader: () => loader
 });
 init_react();
+var import_react2 = __toModule(require("react"));
+var import_remix3 = __toModule(require_remix());
 
 // app/utils/translate.tsx
 init_react();
@@ -484,46 +501,35 @@ var handshake_default = "/build/_assets/handshake-3DUQFU7N.png";
 
 // app/components/contributors.tsx
 init_react();
-var import_react = __toModule(require("react"));
-function Contributors() {
-  const [contributors, setContributors] = (0, import_react.useState)(null);
-  (0, import_react.useEffect)(() => {
-    fetch("https://api.github.com/repos/leodlabs/kuduairo-translator/contributors").then((response) => {
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      return response.json();
-    }).then((data) => {
-      data = data.map((contributor) => {
-        return /* @__PURE__ */ React.createElement("div", {
-          className: "col-lg-2 col-5",
-          key: contributor.login
-        }, /* @__PURE__ */ React.createElement("div", {
-          className: "card"
-        }, /* @__PURE__ */ React.createElement("img", {
-          src: contributor.avatar_url,
-          alt: contributor.login,
-          className: "card-img-top"
-        }), /* @__PURE__ */ React.createElement("div", {
-          className: "card-body"
-        }, /* @__PURE__ */ React.createElement("h5", {
-          className: "card-title"
-        }, contributor.login), /* @__PURE__ */ React.createElement("a", {
-          href: contributor.html_url,
-          target: `_blank`,
-          className: "card-link"
-        }, "Siga no GitHusb"))));
-      });
-      setContributors(data);
-    });
-  }, []);
+function Contributor({ avatar_url, login, html_url }) {
+  return /* @__PURE__ */ React.createElement("div", {
+    className: "col-lg-2 col-5"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "card"
+  }, /* @__PURE__ */ React.createElement("img", {
+    src: avatar_url,
+    alt: login,
+    className: "card-img-top"
+  }), /* @__PURE__ */ React.createElement("div", {
+    className: "card-body"
+  }, /* @__PURE__ */ React.createElement("h5", {
+    className: "card-title"
+  }, login), /* @__PURE__ */ React.createElement("a", {
+    href: html_url,
+    target: "_blank",
+    className: "card-link"
+  }, "Siga no GitHusb"))));
+}
+function Contributors({ contributors = [] }) {
   return /* @__PURE__ */ React.createElement("section", {
     className: "row mt-4"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "col-12 text-center"
   }, /* @__PURE__ */ React.createElement("h1", null, "Contribuidoaires"), /* @__PURE__ */ React.createElement("div", {
     className: `row justify-content-center mb-4`
-  }, contributors ? contributors : "CARREGAINDO..."), /* @__PURE__ */ React.createElement("small", {
+  }, contributors.length > 0 ? contributors.map((contributor) => /* @__PURE__ */ React.createElement(Contributor, __spreadValues({
+    key: contributor.html_url
+  }, contributor))) : "CARREGAINDO..."), /* @__PURE__ */ React.createElement("small", {
     className: "my-4"
   }, "Se contribuires no repositoairio do GitHusb teu noaime aparecer\xE1 aqui")));
 }
@@ -574,7 +580,7 @@ function Footer() {
 
 // app/components/audio-player.tsx
 init_react();
-var import_react2 = __toModule(require("react"));
+var import_react = __toModule(require("react"));
 var import_react_howler = __toModule(require("react-howler"));
 
 // app/audio/nofear.mp3
@@ -582,28 +588,45 @@ var nofear_default = "/build/_assets/nofear-WA76NAAA.mp3";
 
 // app/components/audio-player.tsx
 function AudioPlayer() {
-  const [play, setPlay] = (0, import_react2.useState)(false);
-  return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement(import_react_howler.default, {
+  const [playing, setPlaying] = (0, import_react.useState)(false);
+  return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement(import_react_howler.default, {
     src: nofear_default,
-    playing: play,
+    playing,
     loop: true,
     html5: true
-  }), /* @__PURE__ */ import_react2.default.createElement("button", {
+  }), /* @__PURE__ */ import_react.default.createElement("button", {
     className: "play-btn",
-    onClick: () => setPlay(!play)
-  }, !play ? "\u25B6" : "\u23F8"));
+    onClick: () => setPlaying((prevState) => !prevState)
+  }, !playing ? "\u25B6" : "\u23F8"));
 }
 
 // route-module:/home/runner/work/kuduairo-translator/kuduairo-translator/app/routes/index.tsx
+var loader = async () => {
+  let contributors = [];
+  try {
+    const response = await fetch("https://api.github.com/repos/leodlabs/kuduairo-translator/contributors");
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    contributors = await response.json();
+  } catch (error) {
+    console.error("Error fetching contributors", error);
+  }
+  return { contributors };
+};
 function Index() {
-  const onTranslateClick = () => {
-    const portugueseText = document.getElementById("portuguese-text").value;
-    document.getElementById("kuduro-text").value = translate_default(portugueseText);
+  const [translatedText, setTranslatedText] = (0, import_react2.useState)("");
+  const { contributors } = (0, import_remix3.useLoaderData)();
+  const handleTranslate = (event) => {
+    event.preventDefault();
+    const portugueseText = event.target.elements["portuguese-text"].value;
+    setTranslatedText(translate_default(portugueseText));
   };
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
     className: "container h-100"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "row justify-content-center"
+  }, /* @__PURE__ */ React.createElement("form", {
+    className: "row justify-content-center",
+    onSubmit: handleTranslate
   }, /* @__PURE__ */ React.createElement("header", {
     className: "col-lg-12 text-center"
   }, /* @__PURE__ */ React.createElement("h1", null, "Kuduairo Translator"), /* @__PURE__ */ React.createElement("img", {
@@ -625,8 +648,8 @@ function Index() {
   }))), /* @__PURE__ */ React.createElement("section", {
     className: "col-lg-2 my-auto text-center"
   }, /* @__PURE__ */ React.createElement("button", {
-    className: "btn btn-block btn-light mt-2",
-    onClick: onTranslateClick
+    type: "submit",
+    className: "btn btn-block btn-light mt-2"
   }, "Traduzoaire!")), /* @__PURE__ */ React.createElement("section", {
     className: "col-lg-5"
   }, /* @__PURE__ */ React.createElement("div", {
@@ -640,12 +663,14 @@ function Index() {
     className: "form-control",
     onChange: (e) => e.preventDefault(),
     rows: 13,
-    value: ""
+    value: translatedText
   }))), /* @__PURE__ */ React.createElement("hr", {
     className: "mt-4"
   }), /* @__PURE__ */ React.createElement(Blurb, null), /* @__PURE__ */ React.createElement("hr", {
     className: "mt-4"
-  }), /* @__PURE__ */ React.createElement(Contributors, null))), /* @__PURE__ */ React.createElement(Footer, null));
+  }), /* @__PURE__ */ React.createElement(Contributors, {
+    contributors
+  }))), /* @__PURE__ */ React.createElement(Footer, null));
 }
 
 // <stdin>
