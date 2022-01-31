@@ -21,11 +21,11 @@ const PHONEMES_TRANSLATION = {
   "dia": "doaia",
   "vida": "voaida",
   "dida": "doaida"
-};
+}
 
 const PHONEMES = Object.keys(PHONEMES_TRANSLATION);
 
-const translate = (text) => {
+const translate = (text: String) => {
   let translatedText = text.slice();
   for (const phoneme of PHONEMES) {
     translatedText = translatedText.replace(new RegExp(phoneme, 'g'), PHONEMES_TRANSLATION[phoneme])
