@@ -1,4 +1,5 @@
 import translate from "~/utils/translate";
+import handshake from '~/images/handshake.png'
 
 export default function Index() {
   const onTranslateClick = () => {
@@ -8,35 +9,42 @@ export default function Index() {
   }
 
   return (
-    <div className="homepage">
-      <h1 className="title">Kuduairo Translator</h1>
+    <div className="container">
+      <div className="row justify-content-center">
+        <header className="col-lg-12 text-center">
+          <h1>Kuduairo Translator</h1>
+          <img src={handshake} alt="Aperto de mãos entre Braseil e Angoaila" className="img-fluid handshake" />
+        </header>
+        <section className="col-lg-5">
+          <div className="form-group">
+            <label htmlFor="portuguese-text">Texto em Português:</label>
+            <textarea
+              id="portuguese-text"
+              name="portuguese-text"
+              className="form-control"
+              placeholder="Escreva seu texto a ser traduzido para o Kuduairo"
+              rows={13}
+            />
+          </div>
+        </section>
+        <section className="col-lg-2 my-auto text-center">
+          <button className="btn btn-block btn-light mt-2" onClick={onTranslateClick}>Traduzoaire!</button>
+        </section>
+        <section className="col-lg-5">
+          <div className="form-group">
+            <label htmlFor="kuduro-text" className="input-label">Tradução em Kuduairo:</label>
 
-      <div className="content">
-        <div className="input-container">
-          <label htmlFor="portuguese-text" className="input-label">Texto em Português:</label>
-
-          <textarea
-            id="portuguese-text"
-            name="portuguese-text"
-            className="input"
-            placeholder="Escreva seu texto a ser traduzido para o Kuduairo"
-          />
-        </div>
-
-        <div className="input-container">
-          <label htmlFor="kuduro-text" className="input-label">Tradução em Kuduairo:</label>
-
-          <textarea
-            id="kuduro-text"
-            name="kuduro-text"
-            className="input"
-            onChange={(e) => e.preventDefault()}
-            value=""
-          />
-        </div>
+            <textarea
+              id="kuduro-text"
+              name="kuduro-text"
+              className="form-control"
+              onChange={(e) => e.preventDefault()}
+              rows={13}
+              value=""
+            />
+          </div>
+        </section>
       </div>
-
-      <button className="translate-button" onClick={onTranslateClick}>Traduzoaire!</button>
     </div>
   );
 }
