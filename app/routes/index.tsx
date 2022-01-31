@@ -3,6 +3,9 @@ import handshake from '~/images/handshake.png'
 import Contributors from "~/components/contributors";
 import Blurb from "~/components/blurb";
 import Footer from "~/components/footer";
+import audio from '~/audio/nofear.mp3';
+import AudioPlayer from "~/components/audio-player";
+
 export default function Index() {
 
   const onTranslateClick = () => {
@@ -18,6 +21,7 @@ export default function Index() {
         <header className="col-lg-12 text-center">
           <h1>Kuduairo Translator</h1>
           <img src={handshake} alt="Aperto de mãos entre Braseil e Angoaila" className="img-fluid handshake mb-3" />
+          <AudioPlayer/>
         </header>
         <section className="col-lg-5">
           <div className="form-group">
