@@ -406,11 +406,6 @@ __export(root_exports, {
 });
 init_react();
 var import_remix2 = __toModule(require_remix());
-
-// app/styles/global.css
-var global_default = "/build/_assets/global-PZEMCML7.css";
-
-// route-module:/home/runner/work/kuduairo-translator/kuduairo-translator/app/root.tsx
 var meta = () => {
   return { title: "Kuduairo Translator" };
 };
@@ -426,7 +421,7 @@ function links() {
     },
     {
       rel: "stylesheet",
-      href: global_default
+      href: "css/global.css"
     }
   ];
 }

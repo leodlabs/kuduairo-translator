@@ -1,5 +1,5 @@
 {
-  "version": "6ec01103",
+  "version": "ed3c9b49",
   "entry": {
     "module": "/build/entry.client-CDXIRCD4.js",
     "imports": [
@@ -11,7 +11,7 @@
     "root": {
       "id": "root",
       "path": "",
-      "module": "/build/root-JYZNBHAT.js",
+      "module": "/build/root-4YIU2J3C.js",
       "hasAction": false,
       "hasLoader": false,
       "hasCatchBoundary": false,
@@ -28,5 +28,5 @@
       "hasErrorBoundary": false
     }
   },
-  "url": "/build/manifest-6EC01103.js"
+  "url": "/build/manifest-ED3C9B49.js"
 }
