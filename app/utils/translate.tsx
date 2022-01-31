@@ -1,12 +1,10 @@
 const PHONEMES_TRANSLATION = {
-  "uro": "uairo",
+  /* universal replacers (prefix | middle | sufixes) */
+  
   "ome": "osme",
   "amina": "asmina",
   "bem": "boain",
   "undo": "uaindo",
-  "ouco": "osco",
-  "ouquinho": "osquanho",
-  "ntira": "ntoaira",
   "ista": "oaista",
   "oiro": "oairo",
   "nta": "inta",
@@ -15,20 +13,30 @@ const PHONEMES_TRANSLATION = {
   "oria": "oairia",
   "ras": "reis",
   "usa": "uisa",
-  "ç": "s",
   "ão": "eum",
-  "lar": "laire",
   "dia": "doaia",
-  "vida": "voaida",
-  "dida": "doaida"
-}
+  
+  /* middles */
+  "(?<=[a-zA-Z0-9])(ç|Ç)(?=[a-zA-Z0-9])": "s",
+  "(?<=[a-zA-Z0-9])(ur|UR)(?=[a-zA-Z0-9])": "uair",
+  "(?<=[a-zA-Z0-9])(ouc|OUC)(?=[a-zA-Z0-9])": "osc",
+  
+  "(?<=[a-zA-Z0-9])(is|IS)(?=[a-zA-Z0-9])": "oais",
+  "(?<=[a-zA-Z0-9])(nti|NTI)(?=[a-zA-Z0-9])": "ntoai",
+  /* sufixes */
+  "(?<=[a-zA-Z0-9])(ouquinho|OUQUINHO)(?=\\s|\\!|\\?|\\.|\\,|$)": "osquanho",
+  "(?<=[a-zA-Z0-9])(ar|AR)(?=\\s|\\!|\\?|\\.|\\,|$)": "aire",
+  "(?<=[a-zA-Z0-9])(ida|IDA)(?=\\s|\\!|\\?|\\.|\\,|$)": "oaida"
+};
 
 const PHONEMES = Object.keys(PHONEMES_TRANSLATION);
 
-const translate = (text: String) => {
+const translate = (text) => {
   let translatedText = text.slice();
   for (const phoneme of PHONEMES) {
-    translatedText = translatedText.replace(new RegExp(phoneme, 'g'), PHONEMES_TRANSLATION[phoneme])
+    translatedText = translatedText.replace(new RegExp(phoneme, 'g'), function(match: string) {
+      return match.match(/[A-Z]/) ? PHONEMES_TRANSLATION[phoneme].toUpperCase() : PHONEMES_TRANSLATION[phoneme];
+    })
   }
 
   return translatedText;
