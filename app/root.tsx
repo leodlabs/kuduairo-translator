@@ -8,8 +8,6 @@ import {
 } from "remix";
 import type { MetaFunction } from "remix";
 
-import styles from "~/styles/global.css";
-
 export const meta: MetaFunction = () => {
   return { title: "Kuduairo Translator" };
 };
@@ -26,7 +24,7 @@ export function links() {
     },
     {
       rel: "stylesheet",
-      href: styles,
+      href: "css/global.css",
     }
   ];
 }
