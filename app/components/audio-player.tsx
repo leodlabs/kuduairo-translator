@@ -6,7 +6,7 @@ export default function AudioPlayer() {
   const [ play, setPlay ] = useState(false)
   return (
     <div>
-      <ReactHowler src={audio} playing={play} loop={true}/>
+      <ReactHowler src={audio} playing={play} loop={true} html5={true}/>
       <button className='play-btn' onClick={() => setPlay(!play)}>
         { !play ? '▶' : '⏸' }
       </button>
