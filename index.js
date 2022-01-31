@@ -463,14 +463,10 @@ var import_remix3 = __toModule(require_remix());
 // app/utils/translate.tsx
 init_react();
 var PHONEMES_TRANSLATION = {
-  "uro": "uairo",
   "ome": "osme",
   "amina": "asmina",
   "bem": "boain",
   "undo": "uaindo",
-  "ouco": "osco",
-  "ouquinho": "osquanho",
-  "ntira": "ntoaira",
   "ista": "oaista",
   "oiro": "oairo",
   "nta": "inta",
@@ -479,18 +475,24 @@ var PHONEMES_TRANSLATION = {
   "oria": "oairia",
   "ras": "reis",
   "usa": "uisa",
-  "\xE7": "s",
   "\xE3o": "eum",
-  "lar": "laire",
   "dia": "doaia",
-  "vida": "voaida",
-  "dida": "doaida"
+  "(?<=[a-zA-Z0-9])(\xE7|\xC7)(?=[a-zA-Z0-9])": "s",
+  "(?<=[a-zA-Z0-9])(ur|UR)(?=[a-zA-Z0-9])": "uair",
+  "(?<=[a-zA-Z0-9])(ouc|OUC)(?=[a-zA-Z0-9])": "osc",
+  "(?<=[a-zA-Z0-9])(is|IS)(?=[a-zA-Z0-9])": "oais",
+  "(?<=[a-zA-Z0-9])(nti|NTI)(?=[a-zA-Z0-9])": "ntoai",
+  "(?<=[a-zA-Z0-9])(ouquinho|OUQUINHO)(?=\\s|\\!|\\?|\\.|\\,|$)": "osquanho",
+  "(?<=[a-zA-Z0-9])(ar|AR)(?=\\s|\\!|\\?|\\.|\\,|$)": "aire",
+  "(?<=[a-zA-Z0-9])(ida|IDA)(?=\\s|\\!|\\?|\\.|\\,|$)": "oaida"
 };
 var PHONEMES = Object.keys(PHONEMES_TRANSLATION);
 var translate = (text) => {
   let translatedText = text.slice();
   for (const phoneme of PHONEMES) {
-    translatedText = translatedText.replace(new RegExp(phoneme, "g"), PHONEMES_TRANSLATION[phoneme]);
+    translatedText = translatedText.replace(new RegExp(phoneme, "g"), function(match) {
+      return match.match(/[A-Z]/) ? PHONEMES_TRANSLATION[phoneme].toUpperCase() : PHONEMES_TRANSLATION[phoneme];
+    });
   }
   return translatedText;
 };

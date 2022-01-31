@@ -1,5 +1,5 @@
 {
-  "version": "fb2d104b",
+  "version": "50d3ec07",
   "entry": {
     "module": "/build/entry.client-X2O2EISC.js",
     "imports": [
@@ -20,12 +20,12 @@
       "id": "routes/index",
       "parentId": "root",
       "index": true,
-      "module": "/build/routes/index-RKLZHDJD.js",
+      "module": "/build/routes/index-DREDEZBN.js",
       "hasAction": false,
       "hasLoader": true,
       "hasCatchBoundary": false,
       "hasErrorBoundary": false
     }
   },
-  "url": "/build/manifest-FB2D104B.js"
+  "url": "/build/manifest-50D3EC07.js"
 }
