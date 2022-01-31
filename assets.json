@@ -1,5 +1,5 @@
 {
-  "version": "50d3ec07",
+  "version": "c7796855",
   "entry": {
     "module": "/build/entry.client-X2O2EISC.js",
     "imports": [
@@ -20,12 +20,12 @@
       "id": "routes/index",
       "parentId": "root",
       "index": true,
-      "module": "/build/routes/index-DREDEZBN.js",
+      "module": "/build/routes/index-KXYGSQCI.js",
       "hasAction": false,
       "hasLoader": true,
       "hasCatchBoundary": false,
       "hasErrorBoundary": false
     }
   },
-  "url": "/build/manifest-50D3EC07.js"
+  "url": "/build/manifest-C7796855.js"
 }

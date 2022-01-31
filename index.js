@@ -463,28 +463,21 @@ var import_remix3 = __toModule(require_remix());
 // app/utils/translate.tsx
 init_react();
 var PHONEMES_TRANSLATION = {
-  "ome": "osme",
-  "amina": "asmina",
-  "bem": "boain",
-  "undo": "uaindo",
-  "ista": "oaista",
-  "oiro": "oairo",
-  "nta": "inta",
-  "ail": "oail",
-  "uem": "ueim",
-  "oria": "oairia",
-  "ras": "reis",
-  "usa": "uisa",
-  "\xE3o": "eum",
-  "dia": "doaia",
-  "(?<=[a-zA-Z0-9])(\xE7|\xC7)(?=[a-zA-Z0-9])": "s",
-  "(?<=[a-zA-Z0-9])(ur|UR)(?=[a-zA-Z0-9])": "uair",
+  "(?<=\\s|\\!|\\?|\\.|\\,|$)(pr[i|\xED]n|PR[I|\xCD]N)(?=[a-zA-Z0-9])": "prein",
+  "(?<=\\s|\\!|\\?|\\.|\\,|$)(vin|VIN)(?=[a-zA-Z0-9])": "vein",
+  "(?<=[a-zA-Z0-9])(\xE7|\xC7)(?=)": "s",
+  "(?<=[a-zA-Z0-9])(uro|URO)(?=[a-zA-Z0-9])": "uairo",
   "(?<=[a-zA-Z0-9])(ouc|OUC)(?=[a-zA-Z0-9])": "osc",
+  "(?<=[a-zA-Z0-9])(un|UN)(?=[a-zA-Z0-9])": "uain",
+  "(?<=[a-zA-Z0-9])(ui|UI)(?=[a-lo-zA-LO-Z0-9]+[^aeiouAEIOU])": "uin",
   "(?<=[a-zA-Z0-9])(is|IS)(?=[a-zA-Z0-9])": "oais",
   "(?<=[a-zA-Z0-9])(nti|NTI)(?=[a-zA-Z0-9])": "ntoai",
   "(?<=[a-zA-Z0-9])(ouquinho|OUQUINHO)(?=\\s|\\!|\\?|\\.|\\,|$)": "osquanho",
   "(?<=[a-zA-Z0-9])(ar|AR)(?=\\s|\\!|\\?|\\.|\\,|$)": "aire",
-  "(?<=[a-zA-Z0-9])(ida|IDA)(?=\\s|\\!|\\?|\\.|\\,|$)": "oaida"
+  "(?<=[a-zA-Z0-9])(ida|IDA)(?=\\s|\\!|\\?|\\.|\\,|$)": "oaida",
+  "(?<=[a-zA-Z0-9])(em|EM)(?=\\s|\\!|\\?|\\.|\\,|$)": "eim",
+  "(?<=[a-zA-Z0-9])(ilha|ILHA)(?=\\s|\\!|\\?|\\.|\\,|$)": "oailha",
+  "(?<=[a-zA-Z0-9])(al|AL)(?=\\s|\\!|\\?|\\.|\\,|$)": "el"
 };
 var PHONEMES = Object.keys(PHONEMES_TRANSLATION);
 var translate = (text) => {
