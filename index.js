@@ -482,14 +482,103 @@ var translate_default = translate;
 // app/images/handshake.png
 var handshake_default = "/build/_assets/handshake-3DUQFU7N.png";
 
+// app/components/contributors.tsx
+init_react();
+var import_react = __toModule(require("react"));
+function Contributors() {
+  const [contributors, setContributors] = (0, import_react.useState)(null);
+  (0, import_react.useEffect)(() => {
+    fetch("https://api.github.com/repos/leodlabs/kuduairo-translator/contributors").then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    }).then((data) => {
+      data = data.map((contributor) => {
+        return /* @__PURE__ */ React.createElement("div", {
+          className: "col-lg-2 col-5"
+        }, /* @__PURE__ */ React.createElement("div", {
+          className: "card"
+        }, /* @__PURE__ */ React.createElement("img", {
+          src: contributor.avatar_url,
+          alt: contributor.login,
+          className: "card-img-top"
+        }), /* @__PURE__ */ React.createElement("div", {
+          className: "card-body"
+        }, /* @__PURE__ */ React.createElement("h5", {
+          className: "card-title"
+        }, contributor.login), /* @__PURE__ */ React.createElement("a", {
+          href: contributor.html_url,
+          target: `_blank`,
+          className: "card-link"
+        }, "Siga no Githuaibe"))));
+      });
+      setContributors(data);
+    });
+  }, []);
+  return /* @__PURE__ */ React.createElement("section", {
+    className: "row mt-4"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "col-12 text-center"
+  }, /* @__PURE__ */ React.createElement("h1", null, "Contribuidoaires"), /* @__PURE__ */ React.createElement("div", {
+    className: `row justify-content-center mb-4`
+  }, contributors ? contributors : "CARREGAINDO..."), /* @__PURE__ */ React.createElement("small", {
+    className: "my-4"
+  }, "Se contribuires no repositoairio do GitHuaibe teu noaime aparecer\xE1 aqui")));
+}
+
+// app/components/blurb.tsx
+init_react();
+
+// app/images/kuduairo.gif
+var kuduairo_default = "/build/_assets/kuduairo-RIPEW75J.gif";
+
+// app/components/blurb.tsx
+function Blurb() {
+  return /* @__PURE__ */ React.createElement("section", {
+    className: "row mt-4 blurb-container"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "col-12 text-center"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: `row justify-content-center align-items-center mb-4`
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "col-lg-8 blurb-description"
+  }, /* @__PURE__ */ React.createElement("marquee", {
+    behavior: "scroll",
+    direction: "left",
+    scrollamount: "20"
+  }, /* @__PURE__ */ React.createElement("h1", {
+    className: "mb-4"
+  }, "AAAAAAAIII MINHA VOAIDA")), /* @__PURE__ */ React.createElement("p", {
+    className: "blurb-paragraph"
+  }, "Kuduruaistas de todas as iduaides se reuniram para codificaire esta oitava maravuailha do muaindo: o tradutoire oficiel de Portugueis Brasileirio para a lingua do Kuduairo. O tradutoire mais \u{1F4AF}% namayer para usuairios de angola, namibia, congo demo cratico e talveis do Brazil")), /* @__PURE__ */ React.createElement("div", {
+    className: "col-lg-4 align-items-center"
+  }, /* @__PURE__ */ React.createElement("img", {
+    src: kuduairo_default,
+    alt: "Gisfe do Kuduairo",
+    className: "img-fluid blurb-image"
+  })))));
+}
+
+// app/components/footer.tsx
+init_react();
+function Footer() {
+  return /* @__PURE__ */ React.createElement("footer", {
+    className: "footer"
+  }, /* @__PURE__ */ React.createElement("a", {
+    target: `_blank`,
+    href: "https://github.com/leodlabs/kuduairo-translator"
+  }, "Kuduairo Translator \xE9 um projeto de C\xF3sdigo Abeirto"));
+}
+
 // route-module:/home/runner/work/kuduairo-translator/kuduairo-translator/app/routes/index.tsx
 function Index() {
   const onTranslateClick = () => {
     const portugueseText = document.getElementById("portuguese-text").value;
     document.getElementById("kuduro-text").value = translate_default(portugueseText);
   };
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "container"
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", {
+    className: "container h-100"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "row justify-content-center"
   }, /* @__PURE__ */ React.createElement("header", {
@@ -497,7 +586,7 @@ function Index() {
   }, /* @__PURE__ */ React.createElement("h1", null, "Kuduairo Translator"), /* @__PURE__ */ React.createElement("img", {
     src: handshake_default,
     alt: "Aperto de m\xE3os entre Braseil e Angoaila",
-    className: "img-fluid handshake"
+    className: "img-fluid handshake mb-3"
   })), /* @__PURE__ */ React.createElement("section", {
     className: "col-lg-5"
   }, /* @__PURE__ */ React.createElement("div", {
@@ -529,7 +618,11 @@ function Index() {
     onChange: (e) => e.preventDefault(),
     rows: 13,
     value: ""
-  })))));
+  }))), /* @__PURE__ */ React.createElement("hr", {
+    className: "mt-4"
+  }), /* @__PURE__ */ React.createElement(Blurb, null), /* @__PURE__ */ React.createElement("hr", {
+    className: "mt-4"
+  }), /* @__PURE__ */ React.createElement(Contributors, null))), /* @__PURE__ */ React.createElement(Footer, null));
 }
 
 // <stdin>

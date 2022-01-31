@@ -1,5 +1,5 @@
 {
-  "version": "ed3c9b49",
+  "version": "956e324f",
   "entry": {
     "module": "/build/entry.client-CDXIRCD4.js",
     "imports": [
@@ -21,12 +21,12 @@
       "id": "routes/index",
       "parentId": "root",
       "index": true,
-      "module": "/build/routes/index-VRGKHZDF.js",
+      "module": "/build/routes/index-AFDJ4GQN.js",
       "hasAction": false,
       "hasLoader": false,
       "hasCatchBoundary": false,
       "hasErrorBoundary": false
     }
   },
-  "url": "/build/manifest-ED3C9B49.js"
+  "url": "/build/manifest-956E324F.js"
 }
