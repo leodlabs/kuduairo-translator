@@ -1,7 +1,10 @@
 import translate from "~/utils/translate";
 import handshake from '~/images/handshake.png'
-
+import Contributors from "~/components/contributors";
+import Blurb from "~/components/blurb";
+import Footer from "~/components/footer";
 export default function Index() {
+
   const onTranslateClick = () => {
     const portugueseText = document.getElementById("portuguese-text").value;
 
@@ -9,11 +12,12 @@ export default function Index() {
   }
 
   return (
-    <div className="container">
+    <>
+    <div className="container h-100">
       <div className="row justify-content-center">
         <header className="col-lg-12 text-center">
           <h1>Kuduairo Translator</h1>
-          <img src={handshake} alt="Aperto de mãos entre Braseil e Angoaila" className="img-fluid handshake" />
+          <img src={handshake} alt="Aperto de mãos entre Braseil e Angoaila" className="img-fluid handshake mb-3" />
         </header>
         <section className="col-lg-5">
           <div className="form-group">
@@ -44,7 +48,13 @@ export default function Index() {
             />
           </div>
         </section>
+        <hr className="mt-4"/>
+        <Blurb/>
+        <hr className="mt-4"/>
+        <Contributors/>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
