@@ -21,7 +21,7 @@ export default function Contributors() {
                         <h5 className="card-title">
                             {contributor.login}
                         </h5>
-                        <a href={contributor.html_url} target={`_blank`} className="card-link">Siga no Githuaibe</a>
+                        <a href={contributor.html_url} target={`_blank`} className="card-link">Siga no GitHusb</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@ export default function Contributors() {
                 }
             </div>
 
-            <small className="my-4">Se contribuires no repositoairio do GitHuaibe teu noaime aparecerá aqui</small>
+            <small className="my-4">Se contribuires no repositoairio do GitHusb teu noaime aparecerá aqui</small>
         </div>
     </section>
   );
