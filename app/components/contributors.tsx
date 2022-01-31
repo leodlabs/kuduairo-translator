@@ -14,7 +14,7 @@ export default function Contributors() {
       data = data.map((contributor: any) => {
         
         return (
-            <div className="col-lg-2 col-5">
+            <div className="col-lg-2 col-5" key={contributor.login}>
                 <div className="card">
                     <img src={contributor.avatar_url} alt={contributor.login} className="card-img-top" />
                     <div className="card-body">
