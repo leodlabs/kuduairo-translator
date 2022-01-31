@@ -511,7 +511,7 @@ function Contributors() {
           href: contributor.html_url,
           target: `_blank`,
           className: "card-link"
-        }, "Siga no Githuaibe"))));
+        }, "Siga no GitHusb"))));
       });
       setContributors(data);
     });
@@ -524,7 +524,7 @@ function Contributors() {
     className: `row justify-content-center mb-4`
   }, contributors ? contributors : "CARREGAINDO..."), /* @__PURE__ */ React.createElement("small", {
     className: "my-4"
-  }, "Se contribuires no repositoairio do GitHuaibe teu noaime aparecer\xE1 aqui")));
+  }, "Se contribuires no repositoairio do GitHusb teu noaime aparecer\xE1 aqui")));
 }
 
 // app/components/blurb.tsx
