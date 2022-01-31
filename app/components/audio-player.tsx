@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import ReactHowler from 'react-howler'
-import audio from '~/audio/nofear.mp3';
+import React, { useState } from "react";
+import ReactHowler from "react-howler";
+import audio from "~/audio/nofear.mp3";
 
 export default function AudioPlayer() {
-  const [ play, setPlay ] = useState(false)
+  const [playing, setPlaying] = useState<boolean>(false);
+
   return (
     <div>
-      <ReactHowler src={audio} playing={play} loop={true} html5={true}/>
-      <button className='play-btn' onClick={() => setPlay(!play)}>
-        { !play ? '▶' : '⏸' }
+      <ReactHowler src={audio} playing={playing} loop html5 />
+      <button
+        className="play-btn"
+        onClick={() => setPlaying((prevState) => !prevState)}
+      >
+        {!playing ? "▶" : "⏸"}
       </button>
     </div>
-  )
+  );
 }

@@ -1,64 +1,97 @@
+import { useState } from "react";
+import { useLoaderData } from "remix";
+import type { LoaderFunction } from "remix";
+
 import translate from "~/utils/translate";
-import handshake from '~/images/handshake.png'
+import handshake from "~/images/handshake.png";
 import Contributors from "~/components/contributors";
 import Blurb from "~/components/blurb";
 import Footer from "~/components/footer";
-import audio from '~/audio/nofear.mp3';
+import audio from "~/audio/nofear.mp3";
 import AudioPlayer from "~/components/audio-player";
 
-export default function Index() {
+export const loader: LoaderFunction = async () => {
+  let contributors = [];
+  try {
+    const response = await fetch(
+      "https://api.github.com/repos/leodlabs/kuduairo-translator/contributors"
+    );
 
-  const onTranslateClick = () => {
-    const portugueseText = document.getElementById("portuguese-text").value;
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
 
-    document.getElementById("kuduro-text").value = translate(portugueseText);
+    contributors = await response.json();
+  } catch (error) {
+    console.error("Error fetching contributors", error);
   }
+
+  return { contributors };
+};
+
+export default function Index() {
+  const [translatedText, setTranslatedText] = useState<string>("");
+  const { contributors } = useLoaderData();
+
+  const handleTranslate = (event) => {
+    event.preventDefault();
+    const portugueseText = event.target.elements["portuguese-text"].value;
+    setTranslatedText(translate(portugueseText));
+  };
 
   return (
     <>
-    <div className="container h-100">
-      <div className="row justify-content-center">
-        <header className="col-lg-12 text-center">
-          <h1>Kuduairo Translator</h1>
-          <img src={handshake} alt="Aperto de mãos entre Braseil e Angoaila" className="img-fluid handshake mb-3" />
-          <AudioPlayer/>
-        </header>
-        <section className="col-lg-5">
-          <div className="form-group">
-            <label htmlFor="portuguese-text">Texto em Português:</label>
-            <textarea
-              id="portuguese-text"
-              name="portuguese-text"
-              className="form-control"
-              placeholder="Escreva seu texto a ser traduzido para o Kuduairo"
-              rows={13}
+      <div className="container h-100">
+        <form className="row justify-content-center" onSubmit={handleTranslate}>
+          <header className="col-lg-12 text-center">
+            <h1>Kuduairo Translator</h1>
+            <img
+              src={handshake}
+              alt="Aperto de mãos entre Braseil e Angoaila"
+              className="img-fluid handshake mb-3"
             />
-          </div>
-        </section>
-        <section className="col-lg-2 my-auto text-center">
-          <button className="btn btn-block btn-light mt-2" onClick={onTranslateClick}>Traduzoaire!</button>
-        </section>
-        <section className="col-lg-5">
-          <div className="form-group">
-            <label htmlFor="kuduro-text" className="input-label">Tradução em Kuduairo:</label>
+            <AudioPlayer />
+          </header>
+          <section className="col-lg-5">
+            <div className="form-group">
+              <label htmlFor="portuguese-text">Texto em Português:</label>
+              <textarea
+                id="portuguese-text"
+                name="portuguese-text"
+                className="form-control"
+                placeholder="Escreva seu texto a ser traduzido para o Kuduairo"
+                rows={13}
+              />
+            </div>
+          </section>
+          <section className="col-lg-2 my-auto text-center">
+            <button type="submit" className="btn btn-block btn-light mt-2">
+              Traduzoaire!
+            </button>
+          </section>
+          <section className="col-lg-5">
+            <div className="form-group">
+              <label htmlFor="kuduro-text" className="input-label">
+                Tradução em Kuduairo:
+              </label>
 
-            <textarea
-              id="kuduro-text"
-              name="kuduro-text"
-              className="form-control"
-              onChange={(e) => e.preventDefault()}
-              rows={13}
-              value=""
-            />
-          </div>
-        </section>
-        <hr className="mt-4"/>
-        <Blurb/>
-        <hr className="mt-4"/>
-        <Contributors/>
+              <textarea
+                id="kuduro-text"
+                name="kuduro-text"
+                className="form-control"
+                onChange={(e) => e.preventDefault()}
+                rows={13}
+                value={translatedText}
+              />
+            </div>
+          </section>
+          <hr className="mt-4" />
+          <Blurb />
+          <hr className="mt-4" />
+          <Contributors contributors={contributors} />
+        </form>
       </div>
-    </div>
-    <Footer/>
+      <Footer />
     </>
   );
 }
