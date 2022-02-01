@@ -16,7 +16,7 @@ export const loader: LoaderFunction = async () => {
 
   try {
     const response = await fetch(
-      "https://raw.githubusercontent.com/leodlabs/kuduro-language-dataset/main/dataset.json"
+      "https://api.github.com/repos/leodlabs/kuduairo-translator/contributors"
     );
 
     if (!response.ok) {
