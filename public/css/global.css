@@ -58,3 +58,39 @@ a:hover {
   background-color: transparent;
   font-size: 2rem;
 }
+
+
+.rightTI {
+  white-space: nowrap; 
+  overflow: hidden;
+  -webkit-animation: marquee 7s linear ;
+  -moz-animation: marquee 7s  linear ;
+  -o-animation: marquee 7s linear ;
+  animation: marquee 7s  linear ;
+}
+@-webkit-keyframes marquee {
+  0% {text-indent: 100%;}
+  100% {text-indent: -100%;}
+}
+
+@-moz-keyframes marquee {
+  0% {text-indent: 100%;}
+  100% {text-indent: -100%;}
+}
+
+@-ms-keyframes marquee {
+  0% {text-indent: 100%;}
+  100% {text-indent: -100%;}
+}
+
+@-o-keyframes marquee {
+  0% {text-indent: 100%;}
+  100% {text-indent: -100%;}
+}
+
+@keyframes marquee {
+  0% {text-indent: 100%;}
+  100% {text-indent: -100%;}
+}
+
+
