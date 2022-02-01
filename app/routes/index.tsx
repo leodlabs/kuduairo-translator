@@ -12,23 +12,6 @@ import AudioPlayer from "~/components/audio-player";
 
 export const loader: LoaderFunction = async () => {
   let contributors = [];
-  let dataset = [];
-
-  try {
-    const response = await fetch(
-      "https://api.github.com/repos/leodlabs/kuduairo-translator/contributors"
-    );
-
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-
-    dataset = await response.json();
-    
-  } catch(error) {
-    console.error("Error fetching dataset", error);
-  }
-
   try {
     const response = await fetch(
       "https://api.github.com/repos/leodlabs/kuduairo-translator/contributors"
@@ -43,17 +26,17 @@ export const loader: LoaderFunction = async () => {
     console.error("Error fetching contributors", error);
   }
 
-  return { contributors, dataset };
+  return { contributors };
 };
 
 export default function Index() {
   const [translatedText, setTranslatedText] = useState<string>("");
-  const { contributors, dataset } = useLoaderData();
+  const { contributors } = useLoaderData();
 
   const handleTranslate = (event) => {
     event.preventDefault();
     const portugueseText = event.target.elements["portuguese-text"].value;
-    setTranslatedText(translate(portugueseText, dataset));
+    setTranslatedText(translate(portugueseText, "teste"));
   };
 
   return (
