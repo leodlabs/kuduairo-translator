@@ -1,7 +1,8 @@
-body {
+
+.wrapper-boring {
+  padding-top: 4rem;
   background-color: #333;
   color: white;
-  padding-top: 4rem;
 }
 
 img.handshake {
@@ -59,38 +60,69 @@ a:hover {
   font-size: 2rem;
 }
 
-
-.rightTI {
-  white-space: nowrap; 
-  overflow: hidden;
-  -webkit-animation: marquee 7s linear ;
-  -moz-animation: marquee 7s  linear ;
-  -o-animation: marquee 7s linear ;
-  animation: marquee 7s  linear ;
-}
-@-webkit-keyframes marquee {
-  0% {text-indent: 100%;}
-  100% {text-indent: -100%;}
+.wrapper {
+  background: linear-gradient(238deg, #fd8800, #fd008f, #9700fd, #003dfd, #05c7e6, #4bd58d);
+  background-size: 1200% 1200%;
+  -webkit-animation: rainbow 15s ease infinite;
+  animation: rainbow 30s ease infinite;
+  padding-top: 4rem;
+  color: white;
+  
+  perspective: 360px;
+  perspective-origin: 50% 50%;
 }
 
-@-moz-keyframes marquee {
-  0% {text-indent: 100%;}
-  100% {text-indent: -100%;}
+@-webkit-keyframes rainbow {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+@keyframes rainbow {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
 }
 
-@-ms-keyframes marquee {
-  0% {text-indent: 100%;}
-  100% {text-indent: -100%;}
+ .top-plane, .bottom-plane {
+   z-index: -10;
+	 width: 200%;
+	 height: 130%;
+	 position: absolute;
+	 bottom: -30%;
+	 left: -50%;
+	 background-image: -webkit-linear-gradient(#a2cef4 2px, transparent 2px), -webkit-linear-gradient(left, #a2cef4 2px, transparent 2px);
+	 background-size: 100px 100px, 100px 100px;
+	 background-position: -1px -1px, -1px -1px;
+	 transform: rotateX(85deg);
+	 animation: planeMoveTop 2s infinite linear;
+}
+ .bottom-plane {
+	 transform: rotateX(-85deg);
+	 top: -30%;
+	 animation: planeMoveBot 2s infinite linear;
+}
+ @keyframes planeMoveTop {
+	 from {
+		 background-position: 0px -100px, 0px 0px;
+	}
+	 to {
+		 background-position: 0px 0px, 100px 0px;
+	}
+}
+ @keyframes planeMoveBot {
+	 from {
+		 background-position: 0px 0px, 0px 0px;
+	}
+	 to {
+		 background-position: 0px -100px, 100px 0px;
+	}
+}
+ @media (max-height: 350px) {
+	 .wrap {
+		 perspective: 210px;
+	}
 }
 
-@-o-keyframes marquee {
-  0% {text-indent: 100%;}
-  100% {text-indent: -100%;}
+textarea {
+  font-size: 1.2rem !important;
 }
-
-@keyframes marquee {
-  0% {text-indent: 100%;}
-  100% {text-indent: -100%;}
-}
-
-

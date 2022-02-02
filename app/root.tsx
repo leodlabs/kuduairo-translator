@@ -38,7 +38,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="wrapper-boring">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

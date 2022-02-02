@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useLoaderData } from "remix";
 import type { LoaderFunction } from "remix";
-
+import ReactHowler from "react-howler";
 import translate from "~/utils/translate";
 import handshake from "~/images/handshake.png";
 import Contributors from "~/components/contributors";
 import Blurb from "~/components/blurb";
 import Footer from "~/components/footer";
 import AudioPlayer from "~/components/audio-player";
+import audio from "~/audio/transition.mp3";
 
 export const loader: LoaderFunction = async () => {
   let contributors = [];
@@ -31,18 +32,42 @@ export const loader: LoaderFunction = async () => {
 export default function Index() {
   const [translatedText, setTranslatedText] = useState<string>("");
   const { contributors } = useLoaderData();
+  const [ transitionPlaying, setTransitionPlaying ] = useState(false)
+  const [ submitText , setSubmitText ] = useState("Traduzuaire");
+  const sleep = (m: any) => new Promise(r => setTimeout(r, m))
+
 
   const handleTranslate = async (event: any) => {
     event.preventDefault();
+    setTransitionPlaying(true)
+    setSubmitText("Traduzuaindo")
+    document.body.classList.remove('wrapper-boring');
+    document.body.classList.add('wrapper');
     setTranslatedText('Fazoaindo cieincia...');
     const portugueseText = event.target.elements["portuguese-text"].value;
-
     const translation = await translate(portugueseText)
     setTranslatedText(translation)
+    setSubmitText("Traduzuaire")
   };
+
+  const onEndHandler = () => {
+    setTransitionPlaying(false)
+    document.body.classList.remove('wrapper')
+    document.body.classList.add('wrapper-boring')
+  }
+
+  const vaporwave = () => {
+    return (
+      <>
+        <div className="top-plane"></div>
+        <div className="bottom-plane"></div>
+      </>
+    )
+  }
 
   return (
     <>
+     
       <div className="container h-100">
         <div className="row justify-content-center">
           <header className="col-lg-12 text-center">
@@ -52,7 +77,7 @@ export default function Index() {
               alt="Aperto de mãos entre Braseil e Angoaila"
               className="img-fluid handshake mb-3"
             />
-            <AudioPlayer />
+            <ReactHowler src={audio} playing={transitionPlaying} html5 onEnd={onEndHandler} />
           </header>
         </div>
         <form className="row justify-content-center" onSubmit={handleTranslate}>
@@ -64,13 +89,13 @@ export default function Index() {
                 name="portuguese-text"
                 className="form-control"
                 placeholder="Escreva seu texto a ser traduzido para o Kuduairo"
-                rows={13}
+                rows={10}
               />
             </div>
           </section>
           <section className="col-lg-2 my-auto text-center">
             <button type="submit" className="btn btn-block btn-light mt-2">
-              Traduzoaire!
+              {submitText}
             </button>
           </section>
           <section className="col-lg-5">
@@ -84,7 +109,7 @@ export default function Index() {
                 name="kuduro-text"
                 className="form-control"
                 onChange={(e) => e.preventDefault()}
-                rows={13}
+                rows={10}
                 value={translatedText}
               />
             </div>
@@ -96,6 +121,7 @@ export default function Index() {
         </form>
       </div>
       <Footer />
+      {transitionPlaying ? vaporwave() : ''}
     </>
   );
 }
