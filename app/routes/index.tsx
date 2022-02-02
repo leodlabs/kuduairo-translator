@@ -7,7 +7,6 @@ import handshake from "~/images/handshake.png";
 import Contributors from "~/components/contributors";
 import Blurb from "~/components/blurb";
 import Footer from "~/components/footer";
-import audio from "~/audio/nofear.mp3";
 import AudioPlayer from "~/components/audio-player";
 
 export const loader: LoaderFunction = async () => {
@@ -33,16 +32,19 @@ export default function Index() {
   const [translatedText, setTranslatedText] = useState<string>("");
   const { contributors } = useLoaderData();
 
-  const handleTranslate = (event) => {
+  const handleTranslate = async (event: any) => {
     event.preventDefault();
+    setTranslatedText('Fazoaindo cieincia...');
     const portugueseText = event.target.elements["portuguese-text"].value;
-    setTranslatedText(translate(portugueseText, "teste"));
+
+    const translation = await translate(portugueseText)
+    setTranslatedText(translation)
   };
 
   return (
     <>
       <div className="container h-100">
-        <form className="row justify-content-center" onSubmit={handleTranslate}>
+        <div className="row justify-content-center">
           <header className="col-lg-12 text-center">
             <h1>Kuduairo Translator</h1>
             <img
@@ -52,6 +54,8 @@ export default function Index() {
             />
             <AudioPlayer />
           </header>
+        </div>
+        <form className="row justify-content-center" onSubmit={handleTranslate}>
           <section className="col-lg-5">
             <div className="form-group">
               <label htmlFor="portuguese-text">Texto em Português:</label>
