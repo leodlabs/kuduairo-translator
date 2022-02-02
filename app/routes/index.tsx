@@ -7,7 +7,7 @@ import handshake from "~/images/handshake.png";
 import Contributors from "~/components/contributors";
 import Blurb from "~/components/blurb";
 import Footer from "~/components/footer";
-import AudioPlayer from "~/components/audio-player";
+import {isMobile} from 'react-device-detect';
 import audio from "~/audio/transition.mp3";
 
 export const loader: LoaderFunction = async () => {
@@ -34,8 +34,6 @@ export default function Index() {
   const { contributors } = useLoaderData();
   const [ transitionPlaying, setTransitionPlaying ] = useState(false)
   const [ submitText , setSubmitText ] = useState("Traduzuaire");
-  const sleep = (m: any) => new Promise(r => setTimeout(r, m))
-
 
   const handleTranslate = async (event: any) => {
     event.preventDefault();
@@ -50,13 +48,8 @@ export default function Index() {
     setSubmitText("Traduzuaire")
   };
 
-  const onEndHandler = () => {
-    setTransitionPlaying(false)
-    document.body.classList.remove('wrapper')
-    document.body.classList.add('wrapper-boring')
-  }
-
   const vaporwave = () => {
+    if(isMobile) return
     return (
       <>
         <div className="top-plane"></div>
@@ -77,7 +70,7 @@ export default function Index() {
               alt="Aperto de mãos entre Braseil e Angoaila"
               className="img-fluid handshake mb-3"
             />
-            <ReactHowler src={audio} playing={transitionPlaying} html5 onEnd={onEndHandler} />
+            <ReactHowler src={audio} playing={transitionPlaying} html5/>
           </header>
         </div>
         <form className="row justify-content-center" onSubmit={handleTranslate}>

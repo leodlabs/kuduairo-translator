@@ -67,9 +67,9 @@ a:hover {
   animation: rainbow 30s ease infinite;
   padding-top: 4rem;
   color: white;
-  
-  perspective: 360px;
+  perspective: 22.5rem;
   perspective-origin: 50% 50%;
+  overflow-x: hidden;
 }
 
 @-webkit-keyframes rainbow {
@@ -84,8 +84,7 @@ a:hover {
 }
 
  .top-plane, .bottom-plane {
-   z-index: -10;
-   -webkit-transform:translate3d(0,0,0);
+   z-index: -9999;
 	 width: 200%;
 	 height: 130%;
 	 position: absolute;
