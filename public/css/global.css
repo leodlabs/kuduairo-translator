@@ -126,3 +126,7 @@ a:hover {
 textarea {
   font-size: 1.2rem !important;
 }
+
+.timeline-header {
+  color: white !important;
+}

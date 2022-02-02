@@ -6,6 +6,7 @@ import translate from "~/utils/translate";
 import handshake from "~/images/handshake.png";
 import Contributors from "~/components/contributors";
 import Blurb from "~/components/blurb";
+import Comments from "~/components/comments";
 import Footer from "~/components/footer";
 import {isMobile} from 'react-device-detect';
 import audio from "~/audio/transition.mp3";
@@ -126,6 +127,8 @@ export default function Index() {
           <Blurb />
           <hr className="mt-4" />
           <Contributors contributors={contributors} />
+          <hr className="mt-4" />
+          <Comments/>
         </form>
       </div>
       <Footer />
