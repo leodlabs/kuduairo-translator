@@ -21,8 +21,8 @@ export const meta: MetaFunction = () => {
     "twitter:title": "KUDUAIRO TRANSLATOR",
     "twitter:descripton": "Tradutoire oficiel de Portugueis Brasiluairo para a lingua do Kuduairo",
     "twitter:image": "https://raw.githubusercontent.com/leodlabs/kuduairo-translator/main/public/favicon.ico",
-    "twitter.site": "https://kuduairo.netlify.app",
-    "twitter.creator": "@leodsu",
+    "twitter:site": "https://kuduairo.netlify.app",
+    "twitter:creator": "@leodsu",
     "robots": "index, follow"
   };
 };
