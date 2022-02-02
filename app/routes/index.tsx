@@ -32,20 +32,35 @@ export const loader: LoaderFunction = async () => {
 export default function Index() {
   const [translatedText, setTranslatedText] = useState<string>("");
   const { contributors } = useLoaderData();
-  const [ transitionPlaying, setTransitionPlaying ] = useState(false)
-  const [ submitText , setSubmitText ] = useState("Traduzuaire");
+  const [ transitionPlaying, setTransitionPlaying ] = useState<boolean>(false)
+  const [ audioPlaying, setAudioPlaying ] = useState<boolean>(false)
+  const [ submitText , setSubmitText ] = useState<string>("Traduzuaire");
+  const [ firstClick, setFirstClick ] = useState<boolean>(true);
 
-  const handleTranslate = async (event: any) => {
-    event.preventDefault();
+  const changeBodyBackground = () => {
+    if(!firstClick) return
+
+    document.body.classList.remove('wrapper-boring')
+    document.body.classList.add('wrapper')
     setTransitionPlaying(true)
+  }
+
+  const handleTranslate = (event: any) => {
+    event.preventDefault();
+
+    changeBodyBackground()
+    setAudioPlaying(firstClick)
+    setFirstClick(false)
+
     setSubmitText("Traduzuaindo")
-    document.body.classList.remove('wrapper-boring');
-    document.body.classList.add('wrapper');
     setTranslatedText('Fazoaindo cieincia...');
+
     const portugueseText = event.target.elements["portuguese-text"].value;
-    const translation = await translate(portugueseText)
-    setTranslatedText(translation)
-    setSubmitText("Traduzuaire")
+
+    translate(portugueseText).then(data => {
+      setTranslatedText(data)
+      setSubmitText("Traduzuaire")
+    })
   };
 
   const vaporwave = () => {
@@ -70,7 +85,7 @@ export default function Index() {
               alt="Aperto de mãos entre Braseil e Angoaila"
               className="img-fluid handshake mb-3"
             />
-            <ReactHowler src={audio} playing={transitionPlaying} html5/>
+            <ReactHowler src={audio} playing={audioPlaying} html5/>
           </header>
         </div>
         <form className="row justify-content-center" onSubmit={handleTranslate}>
@@ -114,7 +129,7 @@ export default function Index() {
         </form>
       </div>
       <Footer />
-      {transitionPlaying ? vaporwave() : ''}
+      { transitionPlaying ? vaporwave() : '' }
     </>
   );
 }
