@@ -9,7 +9,22 @@ import {
 import type { MetaFunction } from "remix";
 
 export const meta: MetaFunction = () => {
-  return { title: "Kuduairo Translator" };
+  return {
+    title: "KUDUAIRO TRANSLATOR",
+    description: "Tradutoire oficiel de Portugueis Brasiluairo para a lingua do Kuduairo",
+    "og:image": "https://raw.githubusercontent.com/leodlabs/kuduairo-translator/main/public/favicon.ico",
+    "og:type": "website",
+    "og:title": "KUDUAIRO TRANSLATOR",
+    "og:descripton": "Tradutoire oficiel de Portugueis Brasiluairo para a lingua do Kuduairo",
+    "og:url": "https://kuduairo.netlify.app",
+    "og:site_name": "KUDUAIRO TRANSLATOR",
+    "twitter:title": "KUDUAIRO TRANSLATOR",
+    "twitter:descripton": "Tradutoire oficiel de Portugueis Brasiluairo para a lingua do Kuduairo",
+    "twitter:image": "https://raw.githubusercontent.com/leodlabs/kuduairo-translator/main/public/favicon.ico",
+    "twitter.site": "https://kuduairo.netlify.app",
+    "twitter.creator": "@leodsu",
+    "robots": "index, follow"
+  };
 };
 
 export function links() {
@@ -25,6 +40,10 @@ export function links() {
     {
       rel: "stylesheet",
       href: "css/global.css",
+    },
+    {
+      rel: "canonical",
+      href: "https://kuduairo.netlify.app"
     }
   ];
 }
