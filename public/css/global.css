@@ -85,6 +85,7 @@ a:hover {
 
  .top-plane, .bottom-plane {
    z-index: -10;
+   -webkit-transform:translate3d(0,0,0);
 	 width: 200%;
 	 height: 130%;
 	 position: absolute;
